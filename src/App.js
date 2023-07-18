@@ -8,6 +8,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="dark" />
+
       <View style={styles.resultContainer}>
         <Text style={styles.result}>{result}</Text>
       </View>
@@ -15,8 +17,6 @@ export default function App() {
       <View style={styles.buttonContainer}>
         <Text>Button</Text>
       </View>
-
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    backgroundColor: '#000000',
+    backgroundColor: '#fff',
   },
   buttonContainer: {
     flex: 1,
