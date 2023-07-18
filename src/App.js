@@ -11,9 +11,11 @@ export default function App() {
       <View style={styles.resultContainer}>
         <Text style={styles.result}>{result}</Text>
       </View>
+
       <View style={styles.buttonContainer}>
         <Text>Button</Text>
       </View>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -22,21 +24,26 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   resultContainer: {
     flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
     backgroundColor: '#000000',
   },
   buttonContainer: {
-    flex: 2,
+    flex: 1,
     backgroundColor: 'skyblue',
   },
   result: {
     color: '#ffffff',
     fontSize: 60,
     fontWeight: '700',
+    paddingBottom: 30,
+    paddingRight: 10,
   },
 });
