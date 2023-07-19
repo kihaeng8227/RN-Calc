@@ -12,15 +12,38 @@ const Operators = {
 
 export default function App() {
   const [result, setResult] = useState(0);
+  const [formula, setFormula] = useState([]);
 
   let width = (useWindowDimensions().width - 5) / 4;
+
+  const onPressNumber = (num) => {
+    const last = formula[formula.length - 1];
+    setResult((prev) => {
+      return prev * 10 + num;
+    });
+  };
+
+  const onPressOperator = (operator) => {
+    switch (operator) {
+      case Operators.CLEAR:
+        setResult(0);
+        setFormula([]);
+        break;
+      case Operators.EQUAL:
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
 
       <View style={styles.resultContainer}>
-        <Text style={styles.result}>{result}</Text>
+        <Text style={styles.result}>
+          {result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        </Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -38,7 +61,7 @@ export default function App() {
                   key={num}
                   title={num.toString()}
                   buttonStyle={{ width, height: width, marginTop: 1 }}
-                  onPress={() => {}}
+                  onPress={() => onPressNumber(num)}
                   buttonType={ButtonTypes.NUMBER}
                 />
               );
@@ -55,13 +78,13 @@ export default function App() {
               title="0"
               buttonStyle={{ width: width * 2, height: width, marginBottom: 1 }}
               buttonType={ButtonTypes.NUMBER}
-              onPress={() => {}}
+              onPress={() => onPressNumber(0)}
             />
             <Button
               title={Operators.EQUAL}
               buttonStyle={{ width: width, height: width, marginBottom: 1 }}
               buttonType={ButtonTypes.OPERATOR}
-              onPress={() => {}}
+              onPress={() => onPressOperator(Operators.EQUAL)}
             />
           </View>
         </View>
@@ -70,16 +93,19 @@ export default function App() {
             title={Operators.CLEAR}
             buttonStyle={{ width, height: width, marginBottom: 1 }}
             buttonType={ButtonTypes.OPERATOR}
+            onPress={() => onPressOperator(Operators.CLEAR)}
           />
           <Button
             title={Operators.MINUS}
             buttonStyle={{ width, height: width, marginBottom: 1 }}
             buttonType={ButtonTypes.OPERATOR}
+            onPress={() => onPressOperator(Operators.MINUS)}
           />
           <Button
             title={Operators.PLUS}
             buttonStyle={{ width, height: width * 2, marginBottom: 1 }}
             buttonType={ButtonTypes.OPERATOR}
+            onPress={() => onPressOperator(Operators.PLUS)}
           />
         </View>
       </View>
